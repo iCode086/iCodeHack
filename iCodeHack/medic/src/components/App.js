@@ -4,6 +4,7 @@ import './App.css';
 import Med from '../abis/Med.json'
 
 
+
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' })
 
@@ -80,80 +81,80 @@ class App extends Component {
 
 
 
-    //Example hash : "QmNmsKLxXoBddLD4jBHrMYdYVXG34ewdh22FVgxGdQeN1p"
-    //Example url: https://ipfs.infura.io/ipfs/QmNmsKLxXoBddLD4jBHrMYdYVXG34ewdh22FVgxGdQeN1p
-    onSubmit = (event) => {
-      event.preventDefault()
-      console.log("submitting the form...")
-      ipfs.add(this.state.buffer, (error, result) => {
-        console.log("ipfs result", result)
-        const theHash = result[0].hash
+  //Example hash : "QmNmsKLxXoBddLD4jBHrMYdYVXG34ewdh22FVgxGdQeN1p"
+  //Example url: https://ipfs.infura.io/ipfs/QmNmsKLxXoBddLD4jBHrMYdYVXG34ewdh22FVgxGdQeN1p
+  onSubmit = (event) => {
+    event.preventDefault()
+    console.log("submitting the form...")
+    ipfs.add(this.state.buffer, (error, result) => {
+      console.log("ipfs result", result)
+      const theHash = result[0].hash
 
-        if (error) {
-          console.error(error)
-          return
-        }
+      if (error) {
+        console.error(error)
+        return
+      }
 
-        this.state.contract.methods.set(result[0].hash).send({ from: this.state.account }).then((r) => {
-          return this.setState({ theHash: result[0].hash })
-        })
-        //step2: store file on blockchain
+      this.state.contract.methods.set(result[0].hash).send({ from: this.state.account }).then((r) => {
+        return this.setState({ theHash: result[0].hash })
       })
-    }
-
-    render() {
-      
-            const mystyle = {
-              color: "black",
-              backgroundColor: "whitesmoke",
-              paddingTop: "80px",
-              align: "center",
-              fontFamily: "Arial"
-            };
-            
-
-      return (
-        <div>
-          <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-            <a
-              className="navbar-brand col-sm-3 col-md-2 mr-0"
-              href="http://www.dappuniversity.com/bootcamp"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Medic Vedic
-          </a>
-            <ul className="navbar-nav px-3">
-              <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-                <small className="text-white">{this.state.account}</small>
-              </li>
-            </ul>
-          </nav>
-          <div className="container-fluid mt-5" style={{ align: "center" }}>
-            <div className="row">
-              <main role="main" className="col-lg-12 d-flex text-center">
-                <div className="content mr-auto ml-auto">
-                  <a
-                    href='https://ipfs.infura.io/ipfs/${this.state.theHash}'
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-
-                    <img src={`https://ipfs.infura.io/ipfs/${this.state.theHash}`} style={{ paddingTop: "70px" }} />
-                  </a>
-                  <p>&nbsp;</p>
-                  <h2>MEDIC VEDIC</h2>
-                  <form onSubmit={this.onSubmit} >
-                    <input type="file" onChange={this.captureFile} />
-                    <input type="submit" />
-                  </form>
-                </div>
-              </main>
-            </div>
-          </div>
-        </div>
-      );
-    }
+      //step2: store file on blockchain
+    })
   }
 
-  export default App;
+  render() {
+
+    const mystyle = {
+      color: "black",
+      backgroundColor: "whitesmoke",
+      paddingTop: "80px",
+      align: "center",
+      fontFamily: "Arial"
+    };
+
+
+    return (
+      <div>
+        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+          <a
+            className="navbar-brand col-sm-3 col-md-2 mr-0"
+            href="iCodeHack/hack.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            iCode Event
+          </a>
+          <ul className="navbar-nav px-3">
+            <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
+              <small className="file_name">Account ID {this.state.account}</small>
+            </li>
+          </ul>
+        </nav>
+        <div className="container-fluid mt-5" style={{ align: "center" }}>
+          <div className="row">
+            <main role="main" className="col-lg-12 d-flex text-center">
+              <div className="content mr-auto ml-auto">
+                <a
+                  href='iCodeHack/hack.html'
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={`https://ipfs.infura.io/ipfs/${this.state.theHash}`} style={{ paddingTop: "70px" }} />
+                </a>
+                <p>&nbsp;</p>
+                <h2>MYSTIC UPLOAD</h2>
+                <form onSubmit={this.onSubmit} >
+                  <input type="file" onChange={this.captureFile} className="choosebtn"/>
+                  <br/>
+                  <input type="submit" className="submitbtn" />
+                </form>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
