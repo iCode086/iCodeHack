@@ -1,1 +1,17 @@
 /* Styles go here */
+/* Styles go here */
+
+.file_name{
+    color: white;
+}
+
+.choosebtn{
+    width:200px;
+    margin-right: 20px;
+}
+
+.submitbtn{
+    width:100px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
