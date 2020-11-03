@@ -1,0 +1,29 @@
+body{
+    background-image: url(bg.jpg);
+    background-size: cover;
+    
+}
+.centered {
+    
+        position: absolute;
+        bottom: 400px;
+        right: 250px;
+        background-color:gold;
+        color: black;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 40px;
+  }
+
+  .left{
+    position: absolute;
+    bottom: 400px;
+    right: 910px;
+    background-color:gold;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 40px;
+  }
+
+  
